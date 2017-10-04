@@ -167,7 +167,8 @@ $(document).ready(function() {
 		var elementToRemove = elementHistory6.pop();
 		elementToRemove.remove();
 	});
-
+	if((submit_url=gup("turkSubmitTo"))!="") {
+    		$(form_selector).attr('action', submit_url + '/mturk/externalSubmit');
 	//submit button function________________________________________
 /*	$("#submitbutton").click(function() {
 		//creating an array of all of the people counts for the HIT
