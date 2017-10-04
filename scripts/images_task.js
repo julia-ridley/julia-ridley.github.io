@@ -167,9 +167,11 @@ $(document).ready(function() {
 		var elementToRemove = elementHistory6.pop();
 		elementToRemove.remove();
 	});
+//	if((submit_url=gup("turkSubmitTo"))!="") {
+//    	$(form_selector).attr('action', submit_url + '/mturk/externalSubmit');
 
 	//submit button function________________________________________
-/*	$("#submitbutton").click(function() {
+	$("#submitbutton").click(function() {
 		//creating an array of all of the people counts for the HIT
 		img1Count = $("#numpeoplefield1").val();
 		$("#numpeoplefield").append(img1Count);
@@ -197,5 +199,4 @@ $(document).ready(function() {
 		img6Time= $("#timetaken1").val();
 		$("#timetaken").append(img6Time);
 	});
-*/	
-})
+});
