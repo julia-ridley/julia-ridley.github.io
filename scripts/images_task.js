@@ -198,7 +198,7 @@ $(document).ready(function() {
 //	if((submit_url=gup("turkSubmitTo"))!="") {
 //    	$(form_selector).attr('action', submit_url + '/mturk/externalSubmit');
 
-	//submit button function________________________________________
+/*	//submit button function________________________________________
 	$("#submitbutton").click(function() {
 		//creating an array of all of the people counts for the HIT
 		img1Count = $("#numpeoplefield1").val();
@@ -226,5 +226,5 @@ $(document).ready(function() {
 		$("#timetaken").append(img5Time);
 		img6Time= $("#timetaken1").val();
 		$("#timetaken").append(img6Time);
-	});
+	});*/
 });
