@@ -1,6 +1,7 @@
 var lastTextField = null;
 
 $(document).ready(function() {
+	//console.log("hello there!");
 	$("input[type='text'],textarea").click(function() {
 		if (document.getElementById("command")!=this) {
 			lastTextField = this;
@@ -9,12 +10,12 @@ $(document).ready(function() {
 		
 	});
 
-	
-		var potentialcommand = $("#recognized_speech").val();
-		console.log("input: "+potentialcommand);
+//	recognition.onresult = function(event) {
+//		var potentialcommand = $("#recognized_speech").val();
+//		console.log("input: "+potentialcommand);
 
 		//var re = /^scroll\s.*(down|up).*/i //starts with scroll, then any number of upper/lowercase characters
-		var re = /^(click|scroll|enter)\s(.*)/i 
+/*		var re = /^(click|scroll|enter)\s(.*)/i 
 		var result = re.exec(potentialcommand)
 		console.log(result);
 
@@ -76,10 +77,10 @@ $(document).ready(function() {
 			}
 		} else if (!result){
 			alert("I cannot process that command");
-		}
+		}*/
 
-
-});
+//	}
+}); 
 
 function simulateClick(element) {
 	  	if (!element) return;
