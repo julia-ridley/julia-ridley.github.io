@@ -1,4 +1,5 @@
 var lastTextField = null;
+var startButtonOn = null;
 
 $(document).ready(function() {
 	//console.log("hello there!");
@@ -10,12 +11,24 @@ $(document).ready(function() {
 		
 	});
 
-//	recognition.onresult = function(event) {
+	$("#start_button").click(function() {
+		if (startButtonOn==null) {
+			startButtonOn="true"
+			console.log("on!");
+		} else if (startButtonOn=="true") {
+			startButtonOn="false"
+			console.log("off!");
+		} else if (startButtonOn=="false") {
+			startButtonOn="true"
+			console.log("on!");
+		}
+	})
+	if (startButtonOn=="false") {
 //		var potentialcommand = $("#recognized_speech").val();
 //		console.log("input: "+potentialcommand);
 
 		//var re = /^scroll\s.*(down|up).*/i //starts with scroll, then any number of upper/lowercase characters
-/*		var re = /^(click|scroll|enter)\s(.*)/i 
+		var re = /^(click|scroll|enter)\s(.*)/i 
 		var result = re.exec(potentialcommand)
 		console.log(result);
 
@@ -77,9 +90,8 @@ $(document).ready(function() {
 			}
 		} else if (!result){
 			alert("I cannot process that command");
-		}*/
-
-//	}
+		}
+	}
 }); 
 
 function simulateClick(element) {

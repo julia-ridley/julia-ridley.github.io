@@ -1,3 +1,5 @@
+//var hasCapturedSpeech = false; //signaling the end of the speech capture
+
 var langs =
 [['Afrikaans',       ['af-ZA']],
  ['Bahasa Indonesia',['id-ID']],
@@ -167,7 +169,7 @@ if (!('webkitSpeechRecognition' in window)) {
     if (final_transcript || interim_transcript) {
       showButtons('inline-block');
     }
-    var re = /^(click|scroll|enter)\s(.*)/i 
+/*    var re = /^(click|scroll|enter)\s(.*)/i 
     var result = re.exec(final_transcript)
     console.log(result);
 
@@ -231,7 +233,7 @@ if (!('webkitSpeechRecognition' in window)) {
     } else if (!result){
       //alert("I cannot process that command");
       console.log("I cannot process that command")
-    }
+    }*/
   };
 }
 
