@@ -100,17 +100,17 @@ if (!('webkitSpeechRecognition' in window)) {
   recognition.onstart = function() {
     recognizing = true;
     showInfo('info_speak_now');
-    start_img.src = 'scripts/mic-animate.gif';
+    start_img.src = 'images/mic-animate.gif';
   };
 
   recognition.onerror = function(event) {
     if (event.error == 'no-speech') {
-      start_img.src = 'scripts/mic.gif';
+      start_img.src = 'images/mic.gif';
       showInfo('info_no_speech');
       ignore_onend = true;
     }
     if (event.error == 'audio-capture') {
-      start_img.src = 'scripts/mic.gif';
+      start_img.src = 'images/mic.gif';
       showInfo('info_no_microphone');
       ignore_onend = true;
     }
@@ -129,7 +129,7 @@ if (!('webkitSpeechRecognition' in window)) {
     if (ignore_onend) {
       return;
     }
-    start_img.src = 'scripts/mic.gif';
+    start_img.src = 'images/mic.gif';
     if (!final_transcript) {
       showInfo('info_start');
       return;
@@ -166,6 +166,70 @@ if (!('webkitSpeechRecognition' in window)) {
     interim_span.innerHTML = linebreak(interim_transcript);
     if (final_transcript || interim_transcript) {
       showButtons('inline-block');
+    }
+    var re = /^(click|scroll|enter)\s(.*)/i 
+    var result = re.exec(final_transcript)
+    console.log(result);
+
+    //inserting command bits
+
+    if (result) { 
+      var verb = result[1];
+      var arg = result[2];
+
+      //$("*:contains"('"+arg="'))
+
+      console.log("verb: "+verb+", args: "+arg);
+      //console.log("command: scroll"+result[2])
+      switch(verb) {
+        case "click":
+          console.log("handling click");
+          var stringpieces = arg.split(/\s/);
+          $("a, input, button").each(function() {
+            if ($(this).val()==arg||$(this).text()==arg) { //look for the text in the input field
+              console.log("found the click thing!");
+              simulateClick(this);
+            } //else if () {//other kinds of tags
+
+            //}
+
+          })
+          break;
+        case "scroll":
+          console.log("handling scroll");
+          if (arg=="left") {
+            $("html, body").animate({
+              scrollTop: $(document).scrollLeft()-300
+            },1000);
+          } else if (arg=="right") {
+            $("html, body").animate({
+              scrollTop: $(document).scrollLeft()+300
+            },1000);
+          } else if (arg=="up") {
+            $("html, body").animate({
+              scrollTop: $(document).scrollTop()-300
+            },1000);
+          } else if (arg=="down") {
+            $("html, body").animate({
+              scrollTop: $(document).scrollTop()+300
+            },1000);
+          }
+          break;
+        case "enter":
+          console.log("handling enter");
+          lastTextField.focus();
+          var text = $(lastTextField).val();
+          text += arg
+          $(lastTextField).val(text);
+          break;
+        default:
+          alert("sorry, that's not a recognized command");
+          //any other case
+          break;
+
+      }
+    } else if (!result){
+      alert("I cannot process that command");
     }
   };
 }
@@ -230,7 +294,7 @@ function startButton(event) {
   ignore_onend = false;
   final_span.innerHTML = '';
   interim_span.innerHTML = '';
-  start_img.src = 'scripts/mic-slash.gif';
+  start_img.src = 'images/mic-slash.gif';
   showInfo('info_allow');
   showButtons('none');
   start_timestamp = event.timeStamp;
