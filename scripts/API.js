@@ -294,10 +294,7 @@ function startButton(event) {
       } else if (!result){
         alert("I cannot process that command");
       }
-      } else if (startButtonOn=="false") {
-        startButtonOn="true"
-        console.log("on!");
-      }
+    } 
 
 
 
