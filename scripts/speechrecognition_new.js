@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 			//var re = /^scroll\s.*(down|up).*/i //starts with scroll, then any number of upper/lowercase characters
 			var re = /^(click|scroll|enter)\s(.*)/i 
-			var result = re.exec(potentialcommand)
+			var result = re.exec($("#recognized_speech").val());
 			console.log(result);
 
 
