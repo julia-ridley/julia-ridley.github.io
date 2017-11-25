@@ -304,7 +304,7 @@ function startButton(event) {
 
 
     //return;
-  }
+  //}
   final_transcript = '';
   recognition.lang = select_dialect.value;
   recognition.start();
