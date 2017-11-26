@@ -223,7 +223,8 @@ function emailButton() {
 
 function startButton(event) {
   if (recognizing) {
-    recognition.stop(); //stop the recognition, final_transcript is finalized
+    //recognition.stop(); //stop the recognition, final_transcript is finalized
+    var mySpeechRecognition = recognition.stop();
     console.log("made it here");
     console.log(final_transcript);
     console.log($("#recognized_speech").val());
