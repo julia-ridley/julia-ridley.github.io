@@ -127,6 +127,7 @@ if (!('webkitSpeechRecognition' in window)) {
   };
 
   recognition.onend = function() {
+    console.log(final_transcript);
     recognizing = false;
     if (ignore_onend) {
       return;
