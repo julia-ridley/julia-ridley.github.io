@@ -225,6 +225,8 @@ function startButton(event) {
   if (recognizing) {
     recognition.stop(); //stop the recognition, final_transcript is finalized
     console.log("made it here");
+    console.log(final_transcript);
+    console.log($("#recognized_speech").val());
     return;
 
 
