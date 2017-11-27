@@ -373,3 +373,16 @@ function simulateClick(element) {
       dispatchEvent(element, 'mouseup');
       console.log("element clicked!")
 };
+
+var lastTextField = null;
+
+$(document).ready(function() {
+  //console.log("hello there!");
+  $("input[type='text'],textarea").click(function() {
+    if (document.getElementById("command")!=this) {
+      lastTextField = this;
+      console.log(lastTextField);
+    }
+    
+  });
+})
