@@ -151,7 +151,7 @@ if (!('webkitSpeechRecognition' in window)) {
         switch(verb) {
           case "Click":
             console.log("handling click");
-            var stringpieces = arg.split(/\s/);
+            arg = arg.split(/\s/);
             $("a, input, button").each(function() {
               if ($(this).val()==arg||$(this).text()==arg) { //look for the text in the input field
                 console.log("found the click thing!");
