@@ -134,7 +134,7 @@ if (!('webkitSpeechRecognition' in window)) {
       //var text = ($("#recognized_speech").val());
       //console.log(text);
       console.log($("#recognized_speech").val());
-      var re = /^(click|scroll|enter)\s(.*)/i 
+      var re = /^(click|scroll|enter|select)\s(.*)/i 
       //var result = re.exec(final_transcript);
       var result = re.exec(final_transcript);
       console.log(result);
@@ -149,6 +149,7 @@ if (!('webkitSpeechRecognition' in window)) {
         console.log("verb: "+verb+", args: "+arg);
         //console.log("command: scroll"+result[2])
         switch(verb) {
+          case "Select":
           case "Click":
             //console.log("handling click");
             //arg = arg.split(/\s/);
