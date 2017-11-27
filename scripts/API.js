@@ -153,12 +153,13 @@ if (!('webkitSpeechRecognition' in window)) {
           case "Click":
             console.log("handling click");
             arg = arg.toLowerCase();
+            var foundLink = false;
             $("a, input, button").each(function() {
               //console.log(this);
               if ($(this).text()) {
                 var compText = ($(this).text()).toLowerCase();
               } else if ($(this).val()) {
-                var compText = ($(this).val()).toLowerCase;
+                var compText = ($(this).val()).toLowerCase();
               }
               console.log(arg);
               //console.log($(this).val());
@@ -166,11 +167,15 @@ if (!('webkitSpeechRecognition' in window)) {
               //if ($(this).val()==arg||$(this).text()==arg) { //look for the text in the input or text field
                 console.log("found the click thing!");
                 simulateClick(this);
+                foundLink = true;
               } //else if () {//other kinds of tags
 
               //}
 
             })
+            if (foundLink==false) {
+              alert("sorry, I couldn't find that item to click");
+            }
             break;
           case "Scroll":
             console.log("handling scroll");
@@ -190,10 +195,15 @@ if (!('webkitSpeechRecognition' in window)) {
               $("html, body").animate({
                 scrollTop: $(document).scrollTop()+300
               },1000);
+            } else {
+              alert("sorry, I can't scroll in that direction");
             }
             break;
           case "Enter":
             console.log("handling enter");
+            if (lastTextField==null) {
+              alert("sorry, a text field wasn't clicked");
+            }
             lastTextField.focus();
             var text = $(lastTextField).val();
             text += arg
