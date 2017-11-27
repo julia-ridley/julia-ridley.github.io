@@ -151,14 +151,18 @@ if (!('webkitSpeechRecognition' in window)) {
         switch(verb) {
           case "Select":
           case "Click":
-            //console.log("handling click");
-            //arg = arg.split(/\s/);
+            console.log("handling click");
+            arg = arg.toLowerCase();
             $("a, input, button").each(function() {
               //console.log(this);
-              console.log($(this).text());
+              if ($(this).text()) {
+                var compText = ($(this).text()).toLowerCase();
+              } else if ($(this).val()) {
+                var compText = ($(this).val()).toLowerCase;
+              }
               console.log(arg);
               //console.log($(this).val());
-              if ($(this).val().localeCompare(arg)==0||$(this).text().localeCompare(arg)==0) {
+              if (compText==arg) {
               //if ($(this).val()==arg||$(this).text()==arg) { //look for the text in the input or text field
                 console.log("found the click thing!");
                 simulateClick(this);
