@@ -248,7 +248,7 @@ if (!('webkitSpeechRecognition' in window)) {
     if (final_transcript || interim_transcript) {
       showButtons('inline-block');
     }
-    console.log(final_transcript);
+    //console.log(final_transcript);
   };
 }
 
@@ -307,8 +307,8 @@ function startButton(event) {
     var mySpeechRecognition = recognition.stop();
     console.log(mySpeechRecognition);
     console.log("made it here");
-    console.log(final_transcript);
-    console.log($("#recognized_speech").val());
+    //console.log(final_transcript);
+    //console.log($("#recognized_speech").val());
     return;
 
 
