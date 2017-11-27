@@ -151,7 +151,7 @@ if (!('webkitSpeechRecognition' in window)) {
         switch(verb) {
           case "Click":
             //console.log("handling click");
-            arg = arg.split(/\s/);
+            //arg = arg.split(/\s/);
             $("a, input, button").each(function() {
               //console.log(this);
               console.log($(this).text());
