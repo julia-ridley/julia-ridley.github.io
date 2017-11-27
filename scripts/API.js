@@ -150,10 +150,12 @@ if (!('webkitSpeechRecognition' in window)) {
         //console.log("command: scroll"+result[2])
         switch(verb) {
           case "Click":
-            console.log("handling click");
+            //console.log("handling click");
             arg = arg.split(/\s/);
             $("a, input, button").each(function() {
-              console.log(this);
+              //console.log(this);
+              console.log($(this).text());
+              console.log($(this).val());
               if ($(this).val().localeCompare(arg)==0||$(this).text().localeCompare(arg)==0) {
               //if ($(this).val()==arg||$(this).text()==arg) { //look for the text in the input or text field
                 console.log("found the click thing!");
