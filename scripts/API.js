@@ -171,11 +171,11 @@ if (!('webkitSpeechRecognition' in window)) {
             console.log("handling scroll");
             if (arg=="left") {
               $("html, body").animate({
-                scrollTop: $(document).scrollLeft()-300
+                scrollLeft: $(document).scrollLeft()-300
               },1000);
             } else if (arg=="right") {
               $("html, body").animate({
-                scrollTop: $(document).scrollLeft()+300
+                scrollLeft: $(document).scrollLeft()+300
               },1000);
             } else if (arg=="up") {
               $("html, body").animate({
