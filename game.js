@@ -176,7 +176,7 @@ $(document).ready(function () {
 
 
 function updateBoard() {
-    //var offset = Math.floor(new Date().getTime() / 1000.0);
+    var offset = Math.floor(new Date().getTime() / 1000.0);
 
     //JSONP
     $.ajax({
