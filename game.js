@@ -276,8 +276,8 @@ function checkShip() {
         if (crowdLives==0) {
             $("#crowdShipCell").hide();
             alert("The crowd ship is dead! You're on your own now!");
-        }*/
-    }
+        }
+    }*/
 }
 
 
