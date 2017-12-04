@@ -277,7 +277,7 @@ function checkShip() {
             $("#crowdShipCell").hide();
             alert("The crowd ship is dead! You're on your own now!");
         }
-    }*/
+    }*///
 }
 
 
