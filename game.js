@@ -176,10 +176,9 @@ $(document).ready(function () {
 
 
 var response_time = 0;
-var numerator = 0;
-var denominator = 0;
 function updateBoard() {
-    
+    var numerator = 0;
+    var denominator = 0;
 
     //JSONP
     $.ajax({
@@ -207,6 +206,7 @@ function updateBoard() {
             response_time = response.time;
             console.log(response.results);
             //console.log(response.results[0]);
+            
             for (i = 0; i <response.results.length; i++) {
                 var single_result = response.results[i]
                 console.log(single_result);
@@ -233,6 +233,7 @@ function updateBoard() {
             crowdShipCell.css("left", crowdShipX+"px");*/
         }
     });
+    $("#crowdShipCell").css("left", Math.round(numerator/denominator));
     //var offset = Math.floor(new Date().getTime() / 1000.0);
     var offset = response_time
 
