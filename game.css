@@ -13,6 +13,12 @@
 	/*background-color: red;*/
 }
 
+#crowdShipCell {
+	box-sizing: border-box;
+	background-color: white
+	opacity: 0.25;
+}
+
 #rewardWrapper {
 	position: absolute;
 	right: 50px;
