@@ -229,6 +229,7 @@ function updateBoard() {
                 gridCells[ry][iCol].html("");
             } else {
                 gridCells[ry][iCol].html("<img src='alien.png'/>");
+		    //
             }
         }
     }
