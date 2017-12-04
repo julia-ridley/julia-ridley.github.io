@@ -146,7 +146,7 @@ $(document).ready(function () {
             var shipPos = $("#shipCell").css("left");
             shipPos = shipPos.slice(0, shipPos.indexOf("px"));
             $.ajax({
-                url: "https://codingthecrowd.com/counter.php", 
+                url: "//codingthecrowd.com/counter.php", 
                 jsonp: "callback",
                 datatype: "jsonp",
                 data: {
