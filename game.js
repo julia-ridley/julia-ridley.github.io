@@ -234,9 +234,9 @@ function callAjax(position) {
             },  //, active: is_active
         success: function(result) {
         // do something with the response
-        //console.log (result);
-        result = JSON.parse(result);
-        console.log(result.time);
+        console.log (result);
+        //result = JSON.parse(result);
+        //console.log(result.time);
         /*console.log(json["results"]);
         var allInputs = json["results"];
         for (var i=0; i<allInputs.length; i++) {
