@@ -197,12 +197,12 @@ function updateBoard() {
     
         // Work with the response
         success: function( response ) {
-            offset = response.time;
-            console.log( offset );
+            //offset = response.time;
+            //console.log( offset );
             console.log( response ); // server response
 
             //update crowd ship pos (mediator)
-            var allShipCols = [];
+            /*var allShipCols = [];
             $.each(response.results, function() {
                 var indShipCol = $(this)[0].data;
                 allShipCols.push(indShipCol);
@@ -217,7 +217,7 @@ function updateBoard() {
 
             crowdShipCol = Math.floor(medianShipCol);
             crowdShipX = cellWidth*crowdShipCol;
-            crowdShipCell.css("left", crowdShipX+"px");
+            crowdShipCell.css("left", crowdShipX+"px");*/
         }
     });
 
