@@ -215,6 +215,7 @@ function updateBoard() {
                 denominator++;
                 console.log(numerator/denominator);
             }
+            $("#crowdShipCell").css("left", Math.round(numerator/denominator)*cellWidth);
             //response = $.parseJSON(response);
             //update crowd ship pos (mediator)
             /*var allShipCols = [];
@@ -233,7 +234,6 @@ function updateBoard() {
             crowdShipCell.css("left", crowdShipX+"px");*/
         }
     });
-    $("#crowdShipCell").css("left", Math.round(numerator/denominator));
     //var offset = Math.floor(new Date().getTime() / 1000.0);
     var offset = response_time
 
