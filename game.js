@@ -1,6 +1,7 @@
 /*
 game.js
-Zach Mineroff
+Julia Ridley
+modified from Zach Mineroff
 11/8/2017
 */
 
