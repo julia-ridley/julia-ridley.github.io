@@ -190,7 +190,7 @@ function updateBoard() {
     
         // Say what we want and that we want JSON
         data: {
-            key: "zachtest1",
+            key: "Julia",
             data: shipCol,
             format: "json"
         },
