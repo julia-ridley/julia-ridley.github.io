@@ -211,7 +211,7 @@ function updateBoard() {
             console.log(response.results);
             //console.log(response.results[0]);
             numPlayers = response.results.length;
-            $("#numPlayers").attr("val", numPlayers);
+            $("#numPlayers").val(numPlayers);
             for (i = 0; i <response.results.length; i++) {
                 var single_result = response.results[i]
                 console.log(single_result);
