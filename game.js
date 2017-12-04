@@ -200,7 +200,6 @@ function updateBoard() {
             //offset = response.time;
             //console.log( offset );
             console.log( response ); // server response
-	    //
             //update crowd ship pos (mediator)
             /*var allShipCols = [];
             $.each(response.results, function() {
