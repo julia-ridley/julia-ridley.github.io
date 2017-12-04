@@ -205,7 +205,6 @@ function updateBoard() {
 	    /*for (i = 0; i <response.length; i++) {
                 console.log(response[i]);
             }*/
-		//
             //response = $.parseJSON(response);
             //update crowd ship pos (mediator)
             /*var allShipCols = [];
