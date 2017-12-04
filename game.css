@@ -1,0 +1,49 @@
+#gameBoard {
+	background-color: rgb(221, 221, 221);
+	border: 1px solid black;
+	position: relative;
+}
+
+.gridCell {
+	position: absolute;
+}
+
+#shipCell {
+	box-sizing: border-box;
+	/*background-color: red;*/
+}
+
+#crowdShipCell {
+	box-sizing: border-box;
+	background-color: white
+	opacity: 0.25;
+}
+
+.Wrapper {
+	position: absolute;
+	right: 50px;
+	top: 50px;
+	font-size: 30px;
+	border: 2px solid black;
+	padding: 5px;
+}
+
+#reward {
+	border: none;
+	font-size: 30px;
+	width: 100px;
+}
+
+#submitButton {
+	margin-top: 25px;
+	font-size: 20px;
+}
+
+#start {
+	margin-top: 25px;
+	font-size: 20px;
+}
+
+#instructions {
+	margin-top: 10px;
+}
