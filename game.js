@@ -211,7 +211,7 @@ function updateBoard() {
                 var single_result = response.results[i]
                 console.log(single_result);
                 console.log(single_result.data);
-                numerator+=single_result.data;
+                numerator+=parseInt(single_result.data);
                 denominator++;
                 console.log(numerator/denominator);
             }
