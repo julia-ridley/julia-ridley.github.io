@@ -199,10 +199,12 @@ function updateBoard() {
         success: function( response ) {
             //offset = response.time;
             //console.log( offset );
-            console.log( response ); // server response
-	    for (i = 0; i <response.length; i++) {
+            //console.log( response ); // server response
+	    console.log(response.time);
+            console.log(response.results);
+	    /*for (i = 0; i <response.length; i++) {
                 console.log(response[i]);
-            }
+            }*/
 		//
             //response = $.parseJSON(response);
             //update crowd ship pos (mediator)
