@@ -228,7 +228,7 @@ function updateBoard() {
             if(board[y][iCol] == 0) {
                 gridCells[ry][iCol].html("");
             } else {
-                gridCells[ry][iCol].html("<img src='pickle.jpg'/>");
+                gridCells[ry][iCol].html("<img src='alien.png'/>");
             }
         }
     }
