@@ -234,6 +234,7 @@ function callAjax(position) {
             },  //, active: is_active
         success: function(result) {
         // do something with the response
+	// comment
         console.log (result);
         //result = JSON.parse(result);
         //console.log(result.time);
