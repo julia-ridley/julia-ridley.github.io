@@ -28,7 +28,7 @@
 	padding: 5px;
 }
 
-#reward {
+.numDisplay {
 	border: none;
 	font-size: 30px;
 	width: 100px;
