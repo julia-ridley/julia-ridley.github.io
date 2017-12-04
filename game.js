@@ -148,7 +148,7 @@ $(document).ready(function () {
             $.ajax({
                 url: "https://codingthecrowd.com/counter.php", 
                 jsonp: "callback",
-                datatype: "json",
+                datatype: "jsonp",
                 data: {
                     key: "Julia",
                     data: shipPos,
