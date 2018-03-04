@@ -1,135 +1,119 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>Web Speech API Demo</title>
-<style>
-  * {
-    font-family: Verdana, Arial, sans-serif;
-  }
-  /*
-  a:link {
-    color:#000;
-    text-decoration: none;
-  }
-  a:visited {
-    color:#000;
-  }
-  a:hover {
-    color:#33F;
-  */
-  .button {
-    background: -webkit-linear-gradient(top,#008dfd 0,#0370ea 100%);
-    border: 1px solid #076bd2;
-    border-radius: 3px;
-    color: #fff;
-    display: none;
-    font-size: 13px;
-    font-weight: bold;
-    line-height: 1.3;
-    padding: 8px 25px;
-    text-align: center;
-    text-shadow: 1px 1px 1px #076bd2;
-    letter-spacing: normal;
-  }
-  .center {
-    padding: 10px;
-    text-align: center;
-  }
-  .final {
-    color: black;
-    padding-right: 3px; 
-  }
-  .interim {
-    color: gray;
-  }
-  .info {
-    font-size: 14px;
-    text-align: center;
-    color: #777;
-    display: none;
-  }
-  .right {
-    float: right;
-  }
-  .sidebyside {
-    display: inline-block;
-    width: 45%;
-    min-height: 40px;
-    text-align: left;
-    vertical-align: top;
-  }
-  #headline {
-    font-size: 40px;
-    font-weight: 300;
-  }
-  #info {
-    font-size: 20px;
-    text-align: center;
-    color: #777;
-    visibility: hidden;
-  }
-  #results {
-    font-size: 14px;
-    font-weight: bold;
-    border: 1px solid #ddd;
-    padding: 15px;
-    text-align: left;
-    min-height: 150px;
-  }
-  #start_button {
-    border: 0;
-    background-color:transparent;
-    padding: 0;
-  }
-</style>
-</head>
-<body>
-<h1 class="center" id="headline">
-  <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">
-    Web Speech API</a> Demonstration</h1>
-<div id="info">
-  <p id="info_start">Click on the microphone icon and begin speaking.</p>
-  <p id="info_speak_now">Speak now.</p>
-  <p id="info_no_speech">No speech was detected. You may need to adjust your
-    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
-      microphone settings</a>.</p>
-  <p id="info_no_microphone" style="display:none">
-    No microphone was found. Ensure that a microphone is installed and that
-    <a href="//support.google.com/chrome/bin/answer.py?hl=en&amp;answer=1407892">
-    microphone settings</a> are configured correctly.</p>
-  <p id="info_allow">Click the "Allow" button above to enable your microphone.</p>
-  <p id="info_denied">Permission to use microphone was denied.</p>
-  <p id="info_blocked">Permission to use microphone is blocked. To change,
-    go to chrome://settings/contentExceptions#media-stream</p>
-  <p id="info_upgrade">Web Speech API is not supported by this browser.
-     Upgrade to <a href="//www.google.com/chrome">Chrome</a>
-     version 25 or later.</p>
-</div>
-<input type="hidden" name="recognized_speech" id="recognized_speech" value="">
-<div class="right">
-  <button id="start_button" onclick="startButton(event)">
-    <img id="start_img" src="images/mic.gif" alt="Start"></button>
-</div>
-<div id="results">
-  <span id="final_span" class="final"></span>
-  <span id="interim_span" class="interim"></span>
-  <p>
-</div>
-<div class="center">
-  <div id="div_language">
-    <select id="select_language" onchange="updateCountry()"></select>
-    &nbsp;&nbsp;
-    <select id="select_dialect"></select>
-  </div>
-</div>
-<a href="http://accessibilitycourse.com/projects/project8.html" id="accessibilitycourse" name="accessibilitycourse">accessibility project</a>
-<input type="text" name="text_input">
-<a href="https://cowclicker.com/" id="cowclicker" name="cowclicker">COW CLICKER</a>
-<textarea id="textarea" name="textarea">text thing</textarea>
-<img src="images/Outpost-Rabbit.jpg" width="1600">
- </body>
-<script src="scripts/jquery.min.js"></script>
-<!--<script src="scripts/speechrecognition_new.js"></script>-->
-<script src="scripts/API.js"></script>
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+	<div id="player"></div>
+    <!-- elizabeth's video URL: "https://www.youtube.com/watch?v=MznN1a8yTUw"></iframe> -->
+    <div id="quiz">
+    	<form id="quiz_form" action=""> 
+    		<input type="radio" id="q1" name="quiz_question" value="incorrect"> When the pedal is pressed down, the piano sounds louder than when the pedal is not pressed down <br>
+    		<input type="radio" id="q2" name="quiz_question" value="correct"> When the pedal is pressed down, when you play a note, it keeps sounding even after you release the key <br>
+    		<input type="radio" id="q3" name="quiz_question" value="incorrect"> When the pedal is pressed down, the piano sounds more similar to a string instrument, like a cello <br>
+    		<input id="submit_button" type="button" value="submit"></input>
+    	</form>
+    </div>
+    <div id="correct-answer">Correct!</div>
+    <div id="incorrect-answer">Not quite right, here's a hint.</div>
+	<style type="text/css">
+		#player {left:10; top:10; z-index:-10; position: absolute;}
+		#quiz {display: none; position: absolute; left:0; top:0; z-index:100; background-color: #82c0ed; width: 640px; height: 390px}
+		#correct-answer {display: none; position: absolute; left:0; top:0; z-index:100; background-color: #73ce5f; width: 640px; height: 390px}
+		#incorrect-answer {display: none; position: absolute; left:0; top:0; z-index:100; background-color: #ce5c5c; width: 640px; height: 390px}
+	</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var timeout = 311000
+
+      var tag = document.createElement('script');
+      //document.getElementById('quiz'),syle['display']="none";
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          //top: 0,
+          //left: 0,
+          //x: 0,
+          //y: 0,
+          //position: 'absolute'
+          videoId: 'MznN1a8yTUw',
+          playerVars: {'autoplay': 0, 'wmode': 'transparent', 'fs': 0, 'controls':1, 'rel':0, 'modestbranding':1, 'showinfo':0},
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 15000);
+          done = true;
+          
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+        document.getElementById('quiz').style['display']="block";
+      }
+      function pauseVideo() {
+        player.pauseVideo();
+      }
+      document.getElementById('player').style['z-index']=-10;
+      document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+    </script>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		//when they submit their quiz answer
+    		$("#submit_button").click(function() {
+    			var is_checked = $("#q2").prop("checked")
+    			//if they got the answer correct
+    			if (is_checked==true) {
+    				//hide the quiz
+    				$("#quiz").hide();
+    				//show the correct answer message
+    				$("#correct-answer").show();
+    				//after 3 seconds skip to the next part of the video
+    				setTimeout(function(){
+    					$("#correct-answer").hide();
+    					player.seekTo(325, true);
+    					console.log("you got it correct")
+    				}, 3000);
+    				//display a "you got it correct" message	
+    			}
+    			//if they got the answer incorrect
+    			else {
+    				//hide the quiz
+    				$("#quiz").hide();
+    				//show the incorrect answer message
+    				$("#incorrect-answer").show();
+    				//after 3 seconds skip to the next part of the video
+    				setTimeout(function(){
+    					$("#incorrect-answer").hide();
+    					player.seekTo(314, true);
+    					console.log("you got it incorrect")
+    				}, 3000);
+    			}
+    		})
+    	})
+    </script>
+  </body>
 </html>
