@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+	<div id="player"></div>
+	<input type="hidden" name="timestamp" id="timestamp">
+    <!-- elizabeth's video URL: "https://www.youtube.com/watch?v=MznN1a8yTUw"></iframe> -->
+    <div id="quiz">
+    	<form id="quiz_form" action=""> 
+    		<input type="radio" id="q1" name="quiz_question" value="incorrect"> When the pedal is pressed down, the piano sounds louder than when the pedal is not pressed down <br>
+    		<input type="radio" id="q2" name="quiz_question" value="correct"> When the pedal is pressed down, when you play a note, it keeps sounding even after you release the key <br>
+    		<input type="radio" id="q3" name="quiz_question" value="incorrect"> When the pedal is pressed down, the piano sounds more similar to a string instrument, like a cello <br>
+    		<input id="quiz_submit_button" type="button" value="submit"></input>
+    	</form>
+    </div>
+    <div id="correct-answer">Correct!</div>
+    <div id="incorrect-answer">Not quite right, here's a hint.</div>
+    <!-- new div for the pop-up that allows students to input a question when the video is paused-->
+    <div id="question_submission">Would you like to ask a question?
+    	<form id="question_input" action="">
+    		<input type="text" name="text_input">
+    		<input id="question_submit_button" type="button" value="submit"></input>
+    	</form>
+    </div>
+	<style type="text/css">
+		#player {left:10; top:10; z-index:-10; position: absolute;}
+		#quiz {display: none; position: absolute; left:10; top:10; z-index:100; background-color: #82c0ed; width: 640px; height: 390px}
+		#correct-answer {display: none; position: absolute; left:10; top:10; z-index:100; background-color: #73ce5f; width: 640px; height: 390px}
+		#incorrect-answer {display: none; position: absolute; left:10; top:10; z-index:100; background-color: #ce5c5c; width: 640px; height: 390px}
+		#question_submission {display: none; position: absolute; left:10; top:10; z-index:110; background-color: #82c0ed; width: 640px; height: 390px}
+	</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+    	// Change the "url" value to the url of your web app;
+		APP_URL = "https://script.google.com/macros/s/AKfycbw9MzBYyEN_-Vf9g844ttASFcXdfrK7XBpdZ9oFmod36aU_2bHO/exec";
+
+		// Post data to the google sheet. You can edit this function to send different data! 
+
+		// act : String | Action you want to store
+		// val : String | Data you want to store 
+		// sheet : String | The sub sheet to post to
+		function postToSheet(act, val, sheet) {
+		  
+		  // NOTE: The keys in your payload must have headers on the sheet you are sending to!
+		  payload = {
+		    timestamp: new Date().getTime(),
+		    //include columns for each section of the video
+		    action: act,
+		    value: val,
+		    sheetName: sheet,
+		    post: true,
+		  }
+		  
+		  sendPayload(payload); 
+		}
+
+		// Returns all elements of a column that is headed by "headerName" as an array.
+
+		// headerName : String | Header name of the column you want. Must be in the first row of the sheet.
+		// callback : function | function to send array to when returned.
+		// sheet : String | The sub sheet to post to
+		var callbackArray = null;
+
+		function getColumn(headerName, callback, sheet) {
+		  payload = {
+		    getColumn: true,
+		    headerName: headerName, 
+		    sheetName: sheet,
+		  }
+		  
+		  sendPayload(payload, callback, "column"); 
+		}
+		//function
+		function stupidCallback(array) {
+			console.log(array);
+			callbackArray = array;
+			console.log(callbackArray);
+		}
+
+
+		// Returns the alement at a specific cell using A1 notation. Ex. TO get the item in row 3 column c, call getItem("3", "c")
+
+		// row : String | row of item to retrieve. Should be a number.
+		// col : String | column of item to retrieve. Should be a letter.
+		// callback : function | function to send array to when returned.
+		// sheet : String | The sub sheet to post to
+		function getItem(row, col, callback, sheet) {
+		  payload = {
+		    getItem: true,
+		    cell: col+row,
+		    sheetName: sheet,
+		  }
+		  
+		  sendPayload(payload, callback, "cell"); 
+		}
+
+		function runColumnCallback(response, callback) {
+		  callback(response.column); 
+		}
+
+		function sendPayload(payload, callback, key) {
+		  
+		  // If no callback supplied, just log the result. 
+		  if (callback === undefined) {
+		    callback = console.log; 
+		  }
+		  
+		  response = $.ajax(
+		    {
+		      url: APP_URL, 
+		      method: "GET",
+		      dataType: "json",
+		      data: payload,
+		      success: function(response) { 
+		        if (key !== undefined){
+		          callback(response[key]);
+		        } else {
+		          callback(response); 
+		        }
+		      },
+		    }).success();
+		}
+    </script>
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var timeout = 311000
+
+      var tag = document.createElement('script');
+      //document.getElementById('quiz'),syle['display']="none";
+
+      var current_time = 0
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          //top: 0,
+          //left: 0,
+          //x: 0,
+          //y: 0,
+          //position: 'absolute'
+          videoId: 'MznN1a8yTUw',
+          playerVars: {'autoplay': 0, 'wmode': 'transparent', 'fs': 0, 'controls':1, 'rel':0, 'modestbranding':1, 'showinfo':0},
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          //quiz starts at 3 mins 11 sec
+          console.log("started playing");
+          setTimeout(stopVideo, timeout);
+          done = true
+        }
+        else if (event.data == YT.PlayerState.PAUSED) {
+          current_time = player.getCurrentTime()
+          //set a hidden value to the timestamp the the player was at 
+          document.getElementById('timestamp').value = current_time;
+          console.log("video paused");
+          console.log(current_time);
+          postToSheet("Hello world!", "Still here", "Sheet1");
+          //getColumn("action", stupidCallback, "Sheet1");
+          document.getElementById('question_submission').style['display']="block";
+          document.getElementById('player').style['z-index']=-10;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+        document.getElementById('quiz').style['display']="block";
+      }
+      document.getElementById('player').style['z-index']=-10;
+      document.getElementById('player').style['-webkit-transform']='translateZ(0)';
+    </script>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+    		//when they submit their quiz answer
+    		$("#quiz_submit_button").click(function() {
+    			var is_checked = $("#q2").prop("checked")
+    			//if they got the answer correct
+    			if (is_checked==true) {
+    				//hide the quiz
+    				$("#quiz").hide();
+    				//show the correct answer message
+    				$("#correct-answer").show();
+    				//after 3 seconds skip to the next part of the video
+    				setTimeout(function(){
+    					$("#correct-answer").hide();
+    					player.seekTo(325, true);
+    					console.log("you got it correct")
+    				}, 3000);
+    				//display a "you got it correct" message	
+    			}
+    			//if they got the answer incorrect
+    			else {
+    				//hide the quiz
+    				$("#quiz").hide();
+    				//show the incorrect answer message
+    				$("#incorrect-answer").show();
+    				//after 3 seconds skip to the next part of the video
+    				setTimeout(function(){
+    					$("#incorrect-answer").hide();
+    					player.seekTo(314, true);
+    					console.log("you got it incorrect")
+    				}, 3000);
+    			}
+    		})
+    		//new code that sends the question that the student submitted to the Google sheet
+    	})
+    </script>
+  </body>
+</html>
