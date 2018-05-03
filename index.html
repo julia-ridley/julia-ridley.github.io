@@ -25,28 +25,28 @@
     	</form>
     </div>
     <div id="question1">Here's your first question: <br>
-      <form id="question1_input"> Question text here <br>
+      <form> <p id="question1_input">Question text here</p> <br>
         <textarea id="question1_input_text" form="question1_input" rows="4" cols="50"></textarea>
         <br>
         <input id="question1_button" type="button" value="submit"></input>
       </form>
     </div>
     <div id="question2">Here's your second question: <br>
-      <form id="question2_input"> Question text here <br>
+      <form> <p id="question2_input">Question text here</p> <br>
         <textarea id="question2_input_text" form="question2_input" rows="4" cols="50"></textarea>
         <br>
         <input id="question2_button" type="button" value="submit"></input>
       </form>
     </div>
     <div id="question3">Here's your third question: <br>
-      <form id="question3_input"> Question text here <br>
+      <form> <p id="question3_input">Question text here</p> <br>
         <textarea id="question3_input_text" form="question3_input" rows="4" cols="50"></textarea>
         <br>
         <input id="question3_button" type="button" value="submit"></input>
       </form>
     </div>
     <div id="question4">Here's your fourth question: <br>
-      <form id="question4_input"> Question text here <br>
+      <form> <p id="question4_input">Question text here</p> <br>
         <textarea id="question4_input_text" form="question4_input" rows="4" cols="50"></textarea>
         <br>
         <input id="question4_button" type="button" value="submit"></input>
@@ -207,8 +207,8 @@
           }
           for (var i = 0; i < randomqnlist.length; i++){
             var form_id = "#question"+(i+1).toString()+"_input";
-	    $(form_id).html("");
-            //$(form_id).html(randomqnlist[i]);
+	    //$(form_id).html("");
+            $(form_id).html(randomqnlist[i]);
 	    console.log($("#question1_input").html());
           }
 
