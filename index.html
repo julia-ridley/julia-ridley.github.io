@@ -2,6 +2,9 @@
 <html>
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <p style="max-width: 640px">
+     Welcome to an informational video about how pianos work! If at any point in the video you are confused or have a question, you can pause the video and submit a question. You will also be asked a thought question 4 times throughout the video, and the video will continue playing when you submit your answer. 
+    </p>
   	<div id="player"></div>
   	<input type="hidden" id="question_to_send">
     <!-- elizabeth's video URL: "https://www.youtube.com/watch?v=MznN1a8yTUw"></iframe> -->
@@ -59,6 +62,7 @@
       <pre id="content"></pre>
     </div>
 	<style type="text/css">
+		body {font-family: "Verdana"; font-size: 10pt}
 		#player {left:10; top:10; z-index:-10; position: absolute;}
 		/*#quiz {display: none; position: absolute; left:10; top:10; z-index:100; background-color: #82c0ed; width: 640px; height: 390px}
 		#correct-answer {display: none; position: absolute; left:10; top:10; z-index:100; background-color: #73ce5f; width: 640px; height: 390px}
