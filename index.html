@@ -206,7 +206,7 @@
             //send it to the UI
           }
           for (var i = 0; i < randomqnlist.length; i++){
-            var form_id = "#question"+str(i+1)+"_input";
+            var form_id = "#question"+(i+1).toString()+"_input";
             $(form_id).val(randomqnlist[i]);
           }
 
