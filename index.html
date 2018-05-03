@@ -370,8 +370,6 @@
 
         //when they submit a question
         $("#question_submit_button").click(function() {
-          //sends the API call to Google Sheets
-          //continues the video and hides the div
           current_time = Math.round(player.getCurrentTime());
           //console.log($("#question_input_text").val());
           //intro
@@ -400,9 +398,12 @@
             question_id = "id5";
           }
           question_to_send = question_id+$("#question_input_text").val();
+          //sends the API call to Google Sheets
+          postQuestion(question_to_send);
           console.log(question_to_send);
           console.log("button clicked");
           $("#question_input_text").val("");
+          //continues the video and hides the div
           $("#question_submission").hide();
           player.playVideo();
         })
